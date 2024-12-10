@@ -3,6 +3,7 @@ package com.mycompany.library_management_system;
 import java.io.FileNotFoundException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -86,10 +87,13 @@ public class LibraryForm extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(Admin);
         Admin.setText("Admin");
 
+        buttonGroup1.add(Librarian);
         Librarian.setText("Librarian");
 
+        buttonGroup1.add(Patron);
         Patron.setText("Patron");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -180,7 +184,9 @@ public class LibraryForm extends javax.swing.JFrame {
                 }
                 else
                 {
-                    // Open Error window
+                        JOptionPane.showMessageDialog(this, "Invalid Data !", "Error", JOptionPane.ERROR_MESSAGE);
+                        UserName.setText("");
+                        Password.setText("");
                 }
         } catch (FileNotFoundException ex) {
             Logger.getLogger(LibraryForm.class.getName()).log(Level.SEVERE, null, ex);
