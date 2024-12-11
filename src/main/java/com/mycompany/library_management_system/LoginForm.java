@@ -144,6 +144,7 @@ public class LoginForm extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void UserNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UserNameActionPerformed
@@ -167,9 +168,13 @@ public class LoginForm extends javax.swing.JFrame {
            else
            {  type = Librarian.getText();}
         try {
-                if(user.LogIn(userName, password, type))
+                if(user.LogIn(userName, password, type) != null)
                 {
-                    // Open new window depended on the type of user
+                    if(type.equals("Admin"))
+                    {
+                        this.dispose();
+                        new AdminForm((User)user.LogIn(userName, password, type)).setVisible(true);
+                    }
                 }
                 else
                 {
@@ -211,10 +216,8 @@ public class LoginForm extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new LoginForm().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new LoginForm().setVisible(true);
         });
     }
 

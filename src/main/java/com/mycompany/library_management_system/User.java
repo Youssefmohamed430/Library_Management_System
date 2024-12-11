@@ -25,31 +25,23 @@ public class User implements Serializable {
      public String getEmail() { return this.Email; }
      public String getPhone() { return this.Phone; }
      
-     public boolean LogIn(String username,String password,String type) throws FileNotFoundException
+     public Object LogIn(String username,String password,String type) throws FileNotFoundException
      {
           if(type.equals("Admin"))
           {
               String AdminFile = "E:\\programming\\Java\\Library_Management_System\\Data\\Admin.txt";
-              if(FileManager.LoadUser(username, password,AdminFile ) != null)
-                 return true;
-              else 
-                  return false;
+              return FileManager.LoadUser(username, password,AdminFile );
           }
           else if(type.equals("Patron"))
           {
               String PatronFile = "E:\\programming\\Java\\Library_Management_System\\Data\\patron.txt";
-              if(FileManager.LoadUser(username, password,PatronFile ) != null)
-                 return true;
-              else 
-                  return false;     
+              return FileManager.LoadUser(username, password,PatronFile ) ;   
           }
           else
           {
               String LibrarianFile = "E:\\programming\\Java\\Library_Management_System\\Data\\Librarian.txt";
-              if(FileManager.LoadUser(username, password,LibrarianFile ) != null)
-                 return true;
-              else 
-                  return false; 
+              return FileManager.LoadUser(username, password,LibrarianFile );
           }
      }
+     
 }
