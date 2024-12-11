@@ -1,6 +1,7 @@
 
 package com.mycompany.library_management_system;
 import java.io.*;
+import java.util.ArrayList;
 
 public class FileManager {
     public static void saveObject(Object ob, String filePath) // دالة لحفظ ال objects في ال files
@@ -66,4 +67,33 @@ public class FileManager {
     }
     
     
+    public static void deleteUser(String username, String password, String filepath) {
+        ArrayList<User> users = new ArrayList<>();
+
+        // قراءة جميع الكائنات من الملف
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filepath))) {
+            while (true) {
+                try {
+                    User user = (User) ois.readObject();
+                    // إذا لم يكن هو المستخدم الذي نريد حذفه، نضيفه إلى القائمة
+                    if (!user.UserName.equals(username) || !user.Password.equals(password)) {
+                        users.add(user);
+                    }
+                } catch (EOFException e) {
+                    break;
+                }
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            System.err.println("Error reading users: " + e.getMessage());
+        }
+
+        // إعادة كتابة جميع الكائنات المتبقية إلى الملف
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filepath))) {
+            for (User user : users) {
+                oos.writeObject(user);
+            }
+        } catch (IOException e) {
+            System.err.println("Error writing users: " + e.getMessage());
+        }
+    }
 }
