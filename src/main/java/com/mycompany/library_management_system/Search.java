@@ -14,21 +14,7 @@ public class Search {
     private void setCurrentQuery(String queryValue, String queryType) {
         this.currentQuery.queryType = queryType;
         this.currentQuery.queryValue = queryValue;
-    }
-<<<<<<< HEAD
-//    public String search(String queryValue , String queryType){
-//        setCurrentQuery(queryValue , queryType);
-//        int i ;
-//        for(i = 0 ; i < books.length ; i++){
-//            if(books[i].type.equals(currentQuery.queryType) ||
-//               books[i].value.equals(currentQuery.queryValue)
-//              )
-//            {
-//             return books[i].toString();  
-//            }
-//        }
-//    }    
-=======
+    }  
 
     public Object searchBook(String queryType, String queryValue) {
         setCurrentQuery(queryValue, queryType);
@@ -50,7 +36,6 @@ public class Search {
 
         return null;
     }
->>>>>>> 84567c455ea32b042161505ac5c250b0ef73271c
 }
 
 
