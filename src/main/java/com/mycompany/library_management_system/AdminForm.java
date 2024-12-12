@@ -24,7 +24,7 @@ public class AdminForm extends javax.swing.JFrame {
         PhoneField.setText(this.user.Phone);
         EmailField.setText(this.user.Email);
     }
-    public AdminForm() {}
+    public AdminForm() {initComponents();}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -113,6 +113,11 @@ public class AdminForm extends javax.swing.JFrame {
 
         SearchAccount.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         SearchAccount.setText("Search Account");
+        SearchAccount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SearchAccountActionPerformed(evt);
+            }
+        });
 
         AddBook.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         AddBook.setText("Add New  Book");
@@ -304,8 +309,8 @@ public class AdminForm extends javax.swing.JFrame {
 
     private void UpdateAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateAccountActionPerformed
         // TODO add your handling code here:
-        this.dispose();
-         new UdateAccount().setVisible(true);
+        this.setVisible(false);
+        new UdateAccount(this).setVisible(true);
     }//GEN-LAST:event_UpdateAccountActionPerformed
 
     private void UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateActionPerformed
@@ -333,15 +338,21 @@ public class AdminForm extends javax.swing.JFrame {
 
     private void CreateAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateAccountActionPerformed
         // TODO add your handling code here:
-        this.dispose();
-        new CreateAccount().setVisible(true);
+        this.setVisible(false);
+        new CreateAccount(this).setVisible(true);
     }//GEN-LAST:event_CreateAccountActionPerformed
 
     private void DeleteAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteAccountActionPerformed
         // TODO add your handling code here:
-        this.dispose();
-        new DeleteAccount().setVisible(true);
+        this.setVisible(false);
+        new DeleteAccount(this).setVisible(true);
     }//GEN-LAST:event_DeleteAccountActionPerformed
+
+    private void SearchAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchAccountActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new SearchForm(this).setVisible(true);
+    }//GEN-LAST:event_SearchAccountActionPerformed
 
     /**
      * @param args the command line arguments
@@ -373,8 +384,7 @@ public class AdminForm extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AdminForm().setVisible(true);
-                
+                new AdminForm().setVisible(true);   
             }
         });
        

@@ -16,18 +16,18 @@ public class Search {
         this.currentQuery.queryType = queryType;
         this.currentQuery.queryValue = queryValue;
     }
-    public String search(String queryValue , String queryType){
-        setCurrentQuery(queryValue , queryType);
-        int i ;
-        for(i = 0 ; i < books.length ; i++){
-            if(books[i].type.equals(currentQuery.queryType) ||
-               books[i].value.equals(currentQuery.queryValue)
-              )
-            {
-             return books[i].toString();  
-            }
-        }
-    }    
+//    public String search(String queryValue , String queryType){
+//        setCurrentQuery(queryValue , queryType);
+//        int i ;
+//        for(i = 0 ; i < books.length ; i++){
+//            if(books[i].type.equals(currentQuery.queryType) ||
+//               books[i].value.equals(currentQuery.queryValue)
+//              )
+//            {
+//             return books[i].toString();  
+//            }
+//        }
+//    }    
 }
 
 class SearchQuery{

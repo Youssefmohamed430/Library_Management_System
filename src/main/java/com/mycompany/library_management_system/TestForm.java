@@ -82,7 +82,7 @@ public class TestForm extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         User user = new User(jTextField1.getText(),jTextField2.getText(),"ljfgf","857745");
-        FileManager.saveObject(user, "E:\\programming\\Java\\Library_Management_System\\Data\\Admin.txt");
+        FileManager.saveObject(user, "E:\\programming\\Java\\Library_Management_System\\Data\\patron.txt");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
