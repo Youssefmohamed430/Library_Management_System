@@ -19,8 +19,8 @@ public class Book {
     private int publicationyear;
     private String status;
     private Category category;
-     public static final String AVAILABLE= "Available";
-      public static final String CHECKEDOUT = "Checked Out";
+    public static final String AVAILABLE= "Available";
+    public static final String CHECKEDOUT = "Checked Out";
     public static final String RESERVED = "Reversed";
 //book manger
     private static List<Book> books;
@@ -28,14 +28,14 @@ public class Book {
 //    private final String fileName;
     
     //constrion class
-    public Book(String book_id,String  book_name,String actor,int publicationyear,String categroy,String description ){
+    public Book(String book_id,String  book_name,String author,int publicationyear,String categroy,String description ){
         
 //book manger
        this.books=new ArrayList<Book>();
        //////////////////////////////////
         this.book_id=book_id;
         this.book_name=book_name;
-        this.author=actor;
+        this.author=author;
         this.publicationyear=publicationyear;
         this.status=AVAILABLE;
         category.setcatagery(categroy);
@@ -93,53 +93,74 @@ public class Book {
         books.add(book);
         //saveObject(book, file path);
 }
-    public static void updatestatus(String id, String newstatus){
+    public static void updateStatus(Book book, String newstatus){
         
-             for ( Book book : books) {
-            if (book.getId().equals(id)) {
-                 book.setstatus(newstatus);
-                 //      saveObject(book,file path);
-            }
-            System.out .println("not found id book");
-         }
+//             for ( Book book : books) {
+//            if (book.getId().equals(id)) {
+//                 book.setstatus(newstatus);
+//                 //      saveObject(book,file path);
+//            }
+//            System.out .println("not found id book");
+//         }
       }
-   public static void updateTitle( String id,String newTitle){
-         for ( Book book : books) {
-            if (book.getId().equals(id)) {
-                 book.setTitle(newTitle);
-                 //      saveObject(book,file path);
-            }
-            System.out .println("not found id book");
-         }
+   public static void updateTitle(Book book,String newTitle){
+//         for ( Book book : books) {
+//            if (book.getId().equals(id)) {
+//                 book.setTitle(newTitle);
+//                 //      saveObject(book,file path);
+//            }
+//            System.out .println("not found id book");
+//         }
    } 
-   public static void updateAuthor( String id,String newAuthor){
-         for ( Book book : books) {
-            if (book.getId().equals(id)) {
-                 book.setAuthor(newAuthor);
-                 //      saveObject(book,file path);
-            }
-            System.out .println("not found id book");
-         }
+   public static void updateAuthor(Book book,String newAuthor){
+//         for ( Book book : books) {
+//            if (book.getId().equals(id)) {
+//                 book.setAuthor(newAuthor);
+//                 //      saveObject(book,file path);
+//            }
+//            System.out .println("not found id book");
+//         }
    } 
-   public static void updatePublicationyear( String id,int newpublicationyear){
-         for ( Book book : books) {
-            if (book.getId().equals(id)) {
-                 book.setpublicationyear(newpublicationyear);
-                 //      saveObject(book,file path);
-            }
-            System.out .println("not found id book");
-         }
+   public static void updatePublicationYear(Book book,int newpublicationyear){
+//         for ( Book book : books) {
+//            if (book.getId().equals(id)) {
+//                 book.setpublicationyear(newpublicationyear);
+//                 //      saveObject(book,file path);
+//            }
+//            System.out .println("not found id book");
+//         }
    } 
-    public static void setCategory( String id,String newcategroy,String newdescription){
-         for ( Book book : books) {
-            if (book.getId().equals(id)) {
-                book.category.setcatagery(newcategroy);
-                book.category.setdescription(newdescription);
-                 //      saveObject(book,file path);
-            }
-            System.out .println("not found id book");
-         }
+    public static void updateCategory(Book book,String newcategory){
+//         for ( Book book : books) {
+//            if (book.getId().equals(id)) {
+//                book.category.setcatagery(newcategory);
+//                 //      saveObject(book,file path);
+//            }
+//            System.out .println("not found id book");
+//         }
    } 
+    public static void updateDescription(Book book, String newdescription){
+//          for ( Book book : books) {
+//            if (book.getId().equals(id)) {
+//                book.category.setdescription(newdescription);
+//                 //      saveObject(book,file path);
+//            }
+//            System.out .println("not found id book");
+//         }
+    }
+    
+   public static void categorizeByGenre(String category){
+       
+   }    
+   public static void categorizeByAuthor(String author){
+       
+   }
+   public static void categorizeByPublicationYear(String publicationYear){
+       
+   }
+   public static void categorizeByStatus(String status){
+       
+   }
 //    ///update book (manger_)
 //    public void updateBook(String id, String newTitle, String newAuthor,int newpublicationyear,String newcategroy,String newdescription) {
 //        for ( Book book : books) {
