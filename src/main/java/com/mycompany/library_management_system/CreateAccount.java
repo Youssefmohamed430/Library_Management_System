@@ -12,8 +12,13 @@ public class CreateAccount extends javax.swing.JFrame {
     /**
      * Creates new form CreateAccount
      */
+    private AdminForm adminform;
     public CreateAccount() {
         initComponents();
+    }
+    public CreateAccount(AdminForm adminform) {
+        initComponents();
+        this.adminform = adminform;
     }
 
     /**
@@ -179,7 +184,7 @@ public class CreateAccount extends javax.swing.JFrame {
     private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        new AdminForm().setVisible(true);
+        this.adminform.setVisible(true);
     }//GEN-LAST:event_BackButtonActionPerformed
 
     /**

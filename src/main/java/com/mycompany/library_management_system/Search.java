@@ -4,36 +4,42 @@ import java.util.ArrayList;
 
 public class Search {
     private SearchQuery currentQuery = new SearchQuery();
-    private ArrayList<Books> books = new ArrayList<>();  
-    private String bookFilePath = "C:\\Library_Management_System\\Data";
+    private FileManager manager = new FileManager();
+    private ArrayList<Book> books = new ArrayList<>(manager.loadAllBooks("C:\\Library_Management_System\\Data"));
+    
 
     public String getCurrentQuery() {
         return this.currentQuery.toString();
     }
 
-    private void setCurrentQuery(String queryValue, String queryType) {
+     private void setCurrentQuery(String queryValue, String queryType) {
+        if (queryType == null || queryValue == null || queryType.isEmpty() || queryValue.isEmpty()) {
+            throw new IllegalArgumentException("Query type and value cannot be null or empty.");
+        }
         this.currentQuery.queryType = queryType;
         this.currentQuery.queryValue = queryValue;
     }
 
+
     public Object searchBook(String queryType, String queryValue) {
         setCurrentQuery(queryValue, queryType);
-
-        for (int i = 0; i < books.size(); i++) {
-            Books book = books.get(i);
-            if (queryType.equals("title") && book.getTitle().equals(queryValue)) {
-                return book;
-            } else if (queryType.equals("author") && book.getAuthor().equals(queryValue)) {
+        
+        for(Book book : books){
+            if("title".equalsIgnoreCase(queryType) && book.getTitle().equalsIgnoreCase(queryValue)){
                 return book;
             }
+            else if("author".equalsIgnoreCase(queryType) && book.getAuthor().equalsIgnoreCase(queryValue)){
+                return book;
+            }
+        } 
+        
+//        if not located in memory , we will find through the fileManager
+        String bookFilePath = "C:\\Library_Management_System\\Books";
+        Object bookFromFile = manager.LoadBook(queryType, queryValue, bookFilePath);
+        if (bookFromFile instanceof Book) {
+            return (Book) bookFromFile;
         }
-
-        // If not found in memory, load from file
-        Object bookFromFile = FileManager.LoadBook(queryType , queryValue , bookFilePath);
-        if (bookFromFile instanceof Books) {
-            return bookFromFile;
-        }
-
+        
         return null;
     }
 }

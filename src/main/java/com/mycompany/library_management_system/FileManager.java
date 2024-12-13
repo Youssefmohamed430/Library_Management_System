@@ -51,7 +51,7 @@ public class FileManager {
                       Object book = (Object) ois.readObject();
 //                      if() هتشيك علي حجات الكتاب
 //                      {
-//                          return user;
+//                          return book;
 //                      }
                   }
                   catch(EOFException e)
@@ -94,6 +94,61 @@ public class FileManager {
             }
         } catch (IOException e) {
             System.err.println("Error writing users: " + e.getMessage());
+        }
+    }
+    
+    // Helper Method: Load all users from a file
+    public static ArrayList<User> loadAllUsers(String filePath) {
+        ArrayList<User> users = new ArrayList<>();
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filePath))) {
+            while (true) {
+                try {
+                    users.add((User) ois.readObject());
+                } catch (EOFException e) {
+                    break;
+                }
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            System.err.println("Error loading users: " + e.getMessage());
+        }
+        return users;
+    }
+
+    // Helper Method: Save all users to a file
+    public static void saveAllUsers(ArrayList<User> users, String filePath) {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filePath))) {
+            for (User user : users) {
+                oos.writeObject(user);
+            }
+        } catch (IOException e) {
+            System.err.println("Error saving users: " + e.getMessage());
+        }
+    }
+        // Helper Method: Load all books from the file
+    public static ArrayList<Book> loadAllBooks(String filePath) {
+        ArrayList<Book> books = new ArrayList<>();
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filePath))) {
+            while (true) {
+                try {
+                    books.add((Book) ois.readObject());
+                } catch (EOFException e) {
+                    break;
+                }
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            System.err.println("Error loading books: " + e.getMessage());
+        }
+        return books;
+    }
+
+    // Helper Method: Save all books to the file
+    public static void saveAllBooks(ArrayList<Book> books, String filePath) {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filePath))) {
+            for (Book book : books) {
+                oos.writeObject(book);
+            }
+        } catch (IOException e) {
+            System.err.println("Error saving books: " + e.getMessage());
         }
     }
 }

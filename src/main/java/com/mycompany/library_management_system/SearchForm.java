@@ -8,20 +8,20 @@ package com.mycompany.library_management_system;
  *
  * @author youss
  */
-public class DeleteAccount extends javax.swing.JFrame {
+public class SearchForm extends javax.swing.JFrame {
 
     /**
-     * Creates new form DeleteAccount
+     * Creates new form SearchForm
      */
     private AdminForm adminform;
-    public DeleteAccount() {
+    public SearchForm() {
         initComponents();
     }
-    public DeleteAccount(AdminForm adminform)
-    {
+    public SearchForm(AdminForm adminform) {
         initComponents();
-        this.adminform  = adminform;
+        this.adminform = adminform;
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -32,21 +32,28 @@ public class DeleteAccount extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        BackButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         PatronRadio = new javax.swing.JRadioButton();
         LibrarianRadio = new javax.swing.JRadioButton();
         jLabel2 = new javax.swing.JLabel();
         UserName = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        PassWord = new javax.swing.JTextField();
-        DeleteAccount = new javax.swing.JButton();
-        BackButton = new javax.swing.JButton();
+        SearchAccount = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Delete Account");
+        setTitle("Search Account");
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        BackButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        BackButton.setText("Back");
+        BackButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackButtonActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
-        jLabel1.setText("Delete Account");
+        jLabel1.setText("Search Account");
 
         buttonGroup1.add(PatronRadio);
         PatronRadio.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
@@ -59,22 +66,11 @@ public class DeleteAccount extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
         jLabel2.setText("Enter User Name :");
 
-        jLabel3.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
-        jLabel3.setText("Enter Password :");
-
-        DeleteAccount.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
-        DeleteAccount.setText("Delete");
-        DeleteAccount.addActionListener(new java.awt.event.ActionListener() {
+        SearchAccount.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        SearchAccount.setText("Search");
+        SearchAccount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DeleteAccountActionPerformed(evt);
-            }
-        });
-
-        BackButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        BackButton.setText("Back");
-        BackButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BackButtonActionPerformed(evt);
+                SearchAccountActionPerformed(evt);
             }
         });
 
@@ -89,24 +85,21 @@ public class DeleteAccount extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
+                        .addContainerGap()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(UserName, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(55, 55, 55)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(UserName, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(PassWord, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(LibrarianRadio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(PatronRadio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(259, 259, 259)
-                        .addComponent(DeleteAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 128, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(PatronRadio, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LibrarianRadio, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(44, 44, 44))
+                        .addComponent(BackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addComponent(BackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(276, 276, 276)
+                .addComponent(SearchAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -115,35 +108,36 @@ public class DeleteAccount extends javax.swing.JFrame {
                 .addComponent(BackButton)
                 .addGap(9, 9, 9)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(57, 57, 57)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(UserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(PatronRadio))
-                .addGap(41, 41, 41)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(PassWord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LibrarianRadio))
-                .addGap(73, 73, 73)
-                .addComponent(DeleteAccount)
-                .addContainerGap(155, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(UserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(LibrarianRadio)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(PatronRadio)))
+                .addGap(45, 45, 45)
+                .addComponent(SearchAccount)
+                .addContainerGap(263, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void DeleteAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteAccountActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_DeleteAccountActionPerformed
-
     private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
         // TODO add your handling code here:
         this.dispose();
         this.adminform.setVisible(true);
     }//GEN-LAST:event_BackButtonActionPerformed
+
+    private void SearchAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchAccountActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_SearchAccountActionPerformed
 
     /**
      * @param args the command line arguments
@@ -162,34 +156,32 @@ public class DeleteAccount extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DeleteAccount.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SearchForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DeleteAccount.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SearchForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DeleteAccount.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SearchForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DeleteAccount.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SearchForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DeleteAccount().setVisible(true);
+                new SearchForm().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BackButton;
-    private javax.swing.JButton DeleteAccount;
     private javax.swing.JRadioButton LibrarianRadio;
-    private javax.swing.JTextField PassWord;
     private javax.swing.JRadioButton PatronRadio;
+    private javax.swing.JButton SearchAccount;
     private javax.swing.JTextField UserName;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }

@@ -13,10 +13,15 @@ public class UdateAccount extends javax.swing.JFrame {
     /**
      * Creates new form UdateAccount
      */
+    private AdminForm adminform;
     public UdateAccount() {
         initComponents();
     }
 
+    public UdateAccount(AdminForm adminform) {
+        initComponents();
+        this.adminform = adminform;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -141,7 +146,7 @@ public class UdateAccount extends javax.swing.JFrame {
     private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        new AdminForm().setVisible(true);
+        this.adminform.setVisible(true);
     }//GEN-LAST:event_BackButtonActionPerformed
 
     /**
@@ -173,6 +178,7 @@ public class UdateAccount extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new UdateAccount().setVisible(true);
             }
