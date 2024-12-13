@@ -19,6 +19,7 @@ public class Book {
     private int publicationyear;
     private boolean status;
     private Category category;
+    private String date;
 //    public static final String AVAILABLE= "Available";
 //    public static final String CHECKEDOUT = "Checked Out";
 //    public static final String RESERVED = "Reversed";
@@ -38,6 +39,7 @@ public class Book {
         this.author=author;
         this.publicationyear=publicationyear;
         this.status=true;
+        this.date=null;
         category.setcatagery(categroy);
         category.setdescription(description);
        
@@ -76,6 +78,13 @@ public class Book {
     public void setCategory(Category category) {
         this.category = category;
     }
+    public String getDueDate() {
+        return dueDate;
+    }
+
+    public void setDueDate(String dueDate) {
+        this.dueDate = dueDate;
+    }
     public boolean isAvailable(){
         return status;
     }
