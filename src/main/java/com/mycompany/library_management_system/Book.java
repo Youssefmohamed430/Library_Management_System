@@ -17,27 +17,27 @@ public class Book {
     private String  book_name;
     private String author;
     private int publicationyear;
-    private String status;
+    private boolean status;
     private Category category;
-    public static final String AVAILABLE= "Available";
-    public static final String CHECKEDOUT = "Checked Out";
-    public static final String RESERVED = "Reversed";
+//    public static final String AVAILABLE= "Available";
+//    public static final String CHECKEDOUT = "Checked Out";
+//    public static final String RESERVED = "Reversed";
 //book manger
     private static List<Book> books;
    
-//    private final String fileName;
+
     
     //constrion class
     public Book(String book_id,String  book_name,String author,int publicationyear,String categroy,String description ){
         
 //book manger
-       this.books=new ArrayList<Book>();
+      
        //////////////////////////////////
         this.book_id=book_id;
         this.book_name=book_name;
         this.author=author;
         this.publicationyear=publicationyear;
-        this.status=AVAILABLE;
+        this.status=true;
         category.setcatagery(categroy);
         category.setdescription(description);
        
@@ -67,14 +67,17 @@ public class Book {
     public void setpublicationyear(int publicationyear){
         this.publicationyear=publicationyear;
     }
-    public String getstatus(){
+    public boolean getstatus(){
         return status;
     }
-    public void setstatus(String status){
+    public void setstatus(boolean status){
         this.status=status;
     }
     public void setCategory(Category category) {
         this.category = category;
+    }
+    public boolean isAvailable(){
+        return status;
     }
     @Override
     public String toString(){
@@ -90,104 +93,122 @@ public class Book {
     
    //add book (manger_)
     public static void addbook(Book book) {
-        books.add(book);
-        //saveObject(book, file path);
+       
+         String FilePath="E:\\programming\\Java\\Library_Management_System\\Data\\booh.txt";
+         FileManager.saveObject(book, FilePath);
 }
-    public static void updateStatus(Book book, String newstatus){
-        
-//             for ( Book book : books) {
-//            if (book.getId().equals(id)) {
-//                 book.setstatus(newstatus);
-//                 //      saveObject(book,file path);
-//            }
-//            System.out .println("not found id book");
-//         }
+    public static void updateStatus(Book book,String id,boolean newstatus){
+        String FilePath="E:\\programming\\Java\\Library_Management_System\\Data\\booh.txt";
+//       book=FileManger.looadbook(); search id 
+        book.setstatus(newstatus);
+        FileManager.saveObject(book, FilePath);
+
       }
-   public static void updateTitle(Book book,String newTitle){
-//         for ( Book book : books) {
-//            if (book.getId().equals(id)) {
-//                 book.setTitle(newTitle);
-//                 //      saveObject(book,file path);
-//            }
-//            System.out .println("not found id book");
-//         }
+   public static void updateTitle(Book book,String id,String newTitle){
+       String FilePath="E:\\programming\\Java\\Library_Management_System\\Data\\booh.txt";
+//       book=FileManger.looadbook();search id
+        book.setTitle(newTitle);
+        FileManager.saveObject(book, FilePath);
+      
    } 
-   public static void updateAuthor(Book book,String newAuthor){
-//         for ( Book book : books) {
-//            if (book.getId().equals(id)) {
-//                 book.setAuthor(newAuthor);
-//                 //      saveObject(book,file path);
-//            }
-//            System.out .println("not found id book");
-//         }
+   public static void updateAuthor(Book book,String id,String newAuthor){
+       
+       String FilePath="E:\\programming\\Java\\Library_Management_System\\Data\\booh.txt";
+//       book=FileManger.looadbook();search id
+       book.setAuthor(newAuthor);
+       FileManager.saveObject(book, FilePath);
+     
    } 
-   public static void updatePublicationYear(Book book,int newpublicationyear){
-//         for ( Book book : books) {
-//            if (book.getId().equals(id)) {
-//                 book.setpublicationyear(newpublicationyear);
-//                 //      saveObject(book,file path);
-//            }
-//            System.out .println("not found id book");
-//         }
+   public static void updatePublicationYear(Book book,String id,int newpublicationyear){
+        String FilePath="E:\\programming\\Java\\Library_Management_System\\Data\\booh.txt";
+//       book=FileManger.looadbook();search id
+       book.setpublicationyear(newpublicationyear);
+       FileManager.saveObject(book, FilePath);
+     
    } 
-    public static void updateCategory(Book book,String newcategory){
-//         for ( Book book : books) {
-//            if (book.getId().equals(id)) {
-//                book.category.setcatagery(newcategory);
-//                 //      saveObject(book,file path);
-//            }
-//            System.out .println("not found id book");
-//         }
-   } 
-    public static void updateDescription(Book book, String newdescription){
-//          for ( Book book : books) {
-//            if (book.getId().equals(id)) {
-//                book.category.setdescription(newdescription);
-//                 //      saveObject(book,file path);
-//            }
-//            System.out .println("not found id book");
-//         }
+    public static void updateCategory(Book book,String id,String newcategory){
+        String FilePath="E:\\programming\\Java\\Library_Management_System\\Data\\booh.txt";
+//       book=FileManger.looadbook();search id
+       book.category.setcatagery(newcategory);
+       FileManager.saveObject(book, FilePath);
+     }
+    public static void updateDescription(Book book,String id, String newdescription){
+  
+ String FilePath="E:\\programming\\Java\\Library_Management_System\\Data\\booh.txt";
+//       book=FileManger.looadbook();search id
+       book.category.setdescription(newdescription);
+       FileManager.saveObject(book, FilePath);
     }
     
    public static void categorizeByGenre(String category){
-       
-   }    
+       books=new ArrayList<Book>();
+        String FilePath="E:\\programming\\Java\\Library_Management_System\\Data\\booh.txt";
+        books= FileManager.loadAllBooks(FilePath);
+     for (Book book : books) {
+            if (book.category.getcatagery().equalsIgnoreCase(category)) {
+                System.out.println(book);
+            }
+        }
+   }
    public static void categorizeByAuthor(String author){
-       
+        books=new ArrayList<Book>();
+       String FilePath="E:\\programming\\Java\\Library_Management_System\\Data\\booh.txt";
+        books= FileManager.loadAllBooks(FilePath);
+         for (Book book : books) {
+               if (book.getAuthor().equalsIgnoreCase(author)) 
+                System.out.println(book);
+            }
    }
-   public static void categorizeByPublicationYear(String publicationYear){
-       
+   public static void categorizeByPublicationYear(int publicationYear){
+        books=new ArrayList<Book>();
+        String FilePath="E:\\programming\\Java\\Library_Management_System\\Data\\booh.txt";
+        books= FileManager.loadAllBooks(FilePath);
+          books=new ArrayList<Book>();
+      for (Book book : books) {
+            if (book.getpublicationyear() != publicationYear ) {
+                System.out.println("not found");
+            }else {
+                System.out.println(book);
+            }
    }
-   public static void categorizeByStatus(String status){
-       
    }
-//    ///update book (manger_)
-//    public void updateBook(String id, String newTitle, String newAuthor,int newpublicationyear,String newcategroy,String newdescription) {
-//        for ( Book book : books) {
-//            if (book.getId().equals(id)) {
-//                book.setTitle(newTitle);
-//                book.setAuthor(newAuthor);
-//                book.setpublicationyear(newpublicationyear);
-//                book.category.setcatagery(newcategroy);
-//                book.category.setdescription(newdescription);
-//               //      saveObject(book,file path);
-//                return;
-//            }
-//            System.out.println("not found id book");
-//        }
-//        }
+   public static void categorizeByStatus(boolean status){
+       String FilePath="E:\\programming\\Java\\Library_Management_System\\Data\\booh.txt";
+        books= FileManager.loadAllBooks(FilePath);
+         books=new ArrayList<Book>();
+         for (Book book : books) {
+            if (book.isAvailable() == status) {
+                System.out.println(book);
+            }
+        }
+   }
+    ///update book (manger_)
+    public void updateBook(Book book, String id, String newTitle, String newAuthor,int newpublicationyear,String newcategroy,String newdescription) {
+         String FilePath="E:\\programming\\Java\\Library_Management_System\\Data\\booh.txt";
+//       book=FileManger.looadbook();search id
+       book.setAuthor(newAuthor);
+       book.setTitle(newTitle);
+       book.setpublicationyear(publicationyear);
+       book.category.setcatagery(newcategroy);
+       book.category.setdescription(newdescription);
+       FileManager.saveObject(book, FilePath);
+     
+        
+        }
 //    
     //delete book (manger_)
     public static void deleteBook(String id) {
-        books.removeIf(book -> book.getId().equals(id));
-//          saveObject(book,file path);
+       //delete book (id);
     }
     
     //list book 
      public void listBooks() {
-        for (Book book : books) {
-            System.out.println(book);
-        }
-    }
+         String FilePath="E:\\programming\\Java\\Library_Management_System\\Data\\booh.txt";
+        books= FileManager.loadAllBooks(FilePath);
+         for (Book book : books) {
+                System.out.println(book);
+            }
+     }
+       
 
 }
