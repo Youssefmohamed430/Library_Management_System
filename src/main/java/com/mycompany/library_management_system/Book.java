@@ -79,11 +79,11 @@ public class Book {
         this.category = category;
     }
     public String getDueDate() {
-        return dueDate;
+        return date;
     }
 
     public void setDueDate(String dueDate) {
-        this.dueDate = dueDate;
+        this.date = dueDate;
     }
     public boolean isAvailable(){
         return status;
