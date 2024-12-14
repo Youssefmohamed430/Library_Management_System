@@ -4,6 +4,8 @@
  */
 package com.mycompany.library_management_system;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author youss
@@ -19,6 +21,12 @@ public class SearchForm extends javax.swing.JFrame {
     }
     public SearchForm(AdminForm adminform) {
         initComponents();
+        this.userNameLabel.setVisible(false);
+        this.EmailLabel.setVisible(false);
+        this.PhoneLabel.setVisible(false);
+        this.UsernammeField.setVisible(false);
+        this.EmailField.setVisible(false);
+        this.PhoneNumberField.setVisible(false);
         this.adminform = adminform;
     }
 
@@ -39,6 +47,12 @@ public class SearchForm extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         UserName = new javax.swing.JTextField();
         SearchAccount = new javax.swing.JButton();
+        userNameLabel = new javax.swing.JLabel();
+        UsernammeField = new javax.swing.JTextField();
+        PhoneNumberField = new javax.swing.JTextField();
+        EmailField = new javax.swing.JTextField();
+        EmailLabel = new javax.swing.JLabel();
+        PhoneLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Search Account");
@@ -74,14 +88,25 @@ public class SearchForm extends javax.swing.JFrame {
             }
         });
 
+        userNameLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        userNameLabel.setText("User Name");
+
+        UsernammeField.setEditable(false);
+
+        PhoneNumberField.setEditable(false);
+
+        EmailField.setEditable(false);
+
+        EmailLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        EmailLabel.setText("Email");
+
+        PhoneLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        PhoneLabel.setText("Phone Number");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(233, 233, 233))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -97,10 +122,33 @@ public class SearchForm extends javax.swing.JFrame {
                         .addComponent(BackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(276, 276, 276)
-                .addComponent(SearchAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(276, 276, 276)
+                        .addComponent(SearchAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(userNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(UsernammeField, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(EmailLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addComponent(EmailField, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(70, 70, 70))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(233, 233, 233))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(PhoneLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(PhoneNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(258, 258, 258))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,8 +168,19 @@ public class SearchForm extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(PatronRadio)))
                 .addGap(45, 45, 45)
-                .addComponent(SearchAccount)
-                .addContainerGap(263, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(SearchAccount)
+                        .addGap(41, 41, 41)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(userNameLabel)
+                            .addComponent(UsernammeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(EmailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(EmailLabel))
+                        .addGap(49, 49, 49)
+                        .addComponent(PhoneNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(PhoneLabel))
+                .addContainerGap(129, Short.MAX_VALUE))
         );
 
         pack();
@@ -136,7 +195,24 @@ public class SearchForm extends javax.swing.JFrame {
 
     private void SearchAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchAccountActionPerformed
         // TODO add your handling code here:
-
+        Search s = new Search(); 
+        String Type = PatronRadio.isSelected() ? PatronRadio.getText() : LibrarianRadio.getText();
+        User user = s.SearchUser(Type,this.UserName.getText());
+        if(user != null) {
+            this.userNameLabel.setVisible(true);
+            this.EmailLabel.setVisible(true);
+            this.PhoneLabel.setVisible(true);
+            this.UsernammeField.setVisible(true);
+            this.EmailField.setVisible(true);
+            this.PhoneNumberField.setVisible(true);
+            this.UsernammeField.setText(user.UserName);
+            this.EmailField.setText(user.Email);
+            this.PhoneNumberField.setText(user.Phone);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this, "User Not Found!", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_SearchAccountActionPerformed
 
     /**
@@ -176,12 +252,18 @@ public class SearchForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BackButton;
+    private javax.swing.JTextField EmailField;
+    private javax.swing.JLabel EmailLabel;
     private javax.swing.JRadioButton LibrarianRadio;
     private javax.swing.JRadioButton PatronRadio;
+    private javax.swing.JLabel PhoneLabel;
+    private javax.swing.JTextField PhoneNumberField;
     private javax.swing.JButton SearchAccount;
     private javax.swing.JTextField UserName;
+    private javax.swing.JTextField UsernammeField;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel userNameLabel;
     // End of variables declaration//GEN-END:variables
 }

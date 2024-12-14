@@ -175,6 +175,15 @@ public class LoginForm extends javax.swing.JFrame {
                         this.dispose();
                         new AdminForm((User)user.LogIn(userName, password, type)).setVisible(true);
                     }
+                    else if(type.equals("patron"))
+                    {
+                        JOptionPane.showMessageDialog(null, "Done!", "Information", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    else 
+                    {
+                        this.dispose();
+                        new LibrarianForm((User)user.LogIn(userName, password, type)).setVisible(true);
+                    }
                 }
                 else
                 {

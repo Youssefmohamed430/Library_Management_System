@@ -41,7 +41,36 @@ public class FileManager {
         return null;
     }
     
-    public static Object LoadBook( String title,String BookId,String filepath) // دالة للحصول علي ال objects الكتب
+    public static User LoadUser(String Username ,String filepath) 
+            // دالة عشان تجيب ال objects من ال files
+    {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filepath))) {
+              while(true)
+              {
+                  try 
+                  {
+                      User user = (User) ois.readObject(); //هنا بتعمل read للobject
+                      if(user.UserName.equals(Username))
+                      {
+                          return user;
+                      }
+                  }
+                  catch(EOFException e)
+                  {
+                      break;
+                  }
+              }
+        } 
+        catch (IOException | ClassNotFoundException e) {
+            System.err.println("Error loading user: " + e.getMessage());
+        }
+        return null;
+    }
+    
+    
+    
+    
+    public static Object LoadBook( String BookId,String filepath) // دالة للحصول علي ال objects الكتب
     {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filepath))) {
               while(true)
@@ -65,6 +94,37 @@ public class FileManager {
         }
         return null;
     }
+    
+//    public static Object LoadBook( String BookTitle,String filepath) 
+//    {
+//        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filepath))) {
+//              while(true)
+//              {
+//                  try 
+//                  {
+//                      Object book = (Object) ois.readObject();
+////                      if() هتشيك علي حجات الكتاب
+////                      {
+////                          return user;
+////                      }
+//                  }
+//                  catch(EOFException e)
+//                  {
+//                      break;
+//                  }
+//              }
+//        } 
+//        catch (IOException | ClassNotFoundException e) {
+//            System.err.println("Error loading user: " + e.getMessage());
+//        }
+//        return null;
+//    }
+//    
+    
+    
+    
+    
+    
     
     
     public static void deleteUser(String username, String password, String filepath) {

@@ -32,7 +32,7 @@ public class User implements Serializable {
               String AdminFile = "E:\\programming\\Java\\Library_Management_System\\Data\\Admin.txt";
               return FileManager.LoadUser(username, password,AdminFile );
           }
-          else if(type.equals("Patron"))
+          else if(type.equals("patron"))
           {
               String PatronFile = "E:\\programming\\Java\\Library_Management_System\\Data\\patron.txt";
               return FileManager.LoadUser(username, password,PatronFile ) ;   
