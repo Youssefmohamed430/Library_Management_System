@@ -1,9 +1,12 @@
 package com.mycompany.library_management_system;
+import java.util.ArrayList;
+import java.util.Date;
 
 public class Librarian extends User {
+    private final String LIBRARIAN_FILE_PATH = "E:\\programming\\Java\\Library_Management_System\\Data\\Librarian.txt";
     // Constructor
-    public Librarian(String username, String password,String Email,String phone) {
-        super(username, password,Email,phone);// Calls the constructor of the parent class 'User'
+    public Librarian(String username, String password,String Email,String phone,String name) {
+        super(username, password,name,Email,phone);// Calls the constructor of the parent class 'User'
     }
     public Librarian() {}
 
@@ -15,21 +18,21 @@ public class Librarian extends User {
     
     public void UpdateInfo(String UserName,String Password,String phone ,String Email)
     {
+        ArrayList<User> Librarians = FileManager.loadAllUsers(LIBRARIAN_FILE_PATH);
         this.setUsername(UserName);
         this.setPassword(Password);
         this.setEmail(Email);
         this.setPhone(phone);
-        FileManager.saveObject(this, "E:\\programming\\Java\\Library_Management_System\\Data\\Librarian.txt");
+        FileManager.saveAllUsers(Librarians, LIBRARIAN_FILE_PATH);
     }
 
     // Method to check out a book for a patron
     public boolean checkoutBook(String UserNamePatron, String BookTitle) { /* Call method With Book Title*/
-        BOOK BookObject =  FileManager.LoadBook(BookTitle,"E:\\programming\\Java\\Library_Management_System\\Data\\Book.txt");
-        if(BookObject.isAvalible())
+        Book BookObject =  FileManager.LoadBook(BookTitle,"E:\\programming\\Java\\Library_Management_System\\Data\\Book.txt");
+        if(BookObject.isAvailable())
         {
-            User Patron = FileManager.LoadUser(UserNamePatron, "E:\\programming\\Java\\Library_Management_System\\Data\\patron.txt");
-            //BookObject.setisAvailble(false)
-            // Patron.checkedoutbooks.add(BookObject)
+            Patron patron = (Patron)FileManager.LoadUser(UserNamePatron, "E:\\programming\\Java\\Library_Management_System\\Data\\patron.txt");
+            patron.CheckoutBooks(BookObject);
             return true;
         }
         else return false;
@@ -39,19 +42,47 @@ public class Librarian extends User {
     {
         if(option)
         {
-            BOOK BookObject =  FileManager.LoadBook(BookTitle,"E:\\programming\\Java\\Library_Management_System\\Data\\Book.txt");
-            User Patron = FileManager.LoadUser(UserNamePatron, "E:\\programming\\Java\\Library_Management_System\\Data\\patron.txt");
-            // Patron.reservationbooks.add(BookObject);
+            Book BookObject =  FileManager.LoadBook(BookTitle,"E:\\programming\\Java\\Library_Management_System\\Data\\Book.txt");
+            Patron patron = (Patron)FileManager.LoadUser(UserNamePatron, "E:\\programming\\Java\\Library_Management_System\\Data\\patron.txt");
+            patron.requestReservations(BookObject);
         }
     }
 
     // Method to return a book from a patron
-//    public void returnBook(Patron patron, Book book) {
-//        patron.returnBook(book);
-//        book.setAvailable(true);
-//        System.out.println("Book returned successfully: " + book);
-//    }
+    public void returnBook(String PatronUserName , String BookId) {
+        Patron patron = (Patron)FileManager.LoadUser(PatronUserName , "E:\\programming\\Java\\Library_Management_System\\Data\\patron.txt");
+        Book book = FileManager.LoadBook(BookId, "E:\\programming\\Java\\Library_Management_System\\Data\\Book.txt");
+        patron.ReturnBook(book);
+        for(var ReservationBook : ReservationBooks.getReservationBooksList())
+        {
+            if(ReservationBook.getBook().equals(book))
+            {
+                String Masseage = "The book is now available";
+                Notification.addNotification(new Notification(Masseage,ReservationBook.getPatron().getName()), ReservationBook.getPatron());
+            }
+        }
+    }
 
+    
+    public void notifyPatron()
+    {
+        CheckedoutHistory checkedoutHistory =  new CheckedoutHistory();
+        Date currentDate = new Date();
+        long differenceInMillis ,daysBetween;
+        for(var checkedoutHistorys : checkedoutHistory.getCheckedoutHistory() )
+        {
+            differenceInMillis  = currentDate.getTime() - checkedoutHistorys.getDate().getTime();
+            daysBetween =  differenceInMillis / (1000 * 60 * 60 * 24);
+            if(daysBetween > checkedoutHistorys.getCheckoutPeriod() ){
+                Notification notification = new Notification("You have outgrown the metaphor",checkedoutHistorys.GetPatron().getName());
+                Notification.addNotification(notification, checkedoutHistorys.GetPatron());
+            }
+            else if(daysBetween >= (checkedoutHistorys.getCheckoutPeriod()-5) && daysBetween < checkedoutHistorys.getCheckoutPeriod()){
+                Notification notification = new Notification("The borrowing date has come soon",checkedoutHistorys.GetPatron().getName());
+                Notification.addNotification(notification, checkedoutHistorys.GetPatron());
+            }
+        }
+    }
 
 
 //    @Override

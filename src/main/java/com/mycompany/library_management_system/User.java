@@ -11,11 +11,13 @@ public class User implements Serializable {
      protected String Password;
      protected String Email;
      protected String Phone;
+     protected String Name;
      
      public User() {}
-     public User(String username,String Password,String Email, String phone) {
+     public User(String username,String Password, String name, String Email, String phone) {
          this.UserName = username;
          this.Password = Password;
+         this.Name = name;
          this.Email = Email;
          this.Phone = phone;
      }
@@ -24,8 +26,9 @@ public class User implements Serializable {
      public String getPassWord() { return this.Password; }
      public String getEmail() { return this.Email; }
      public String getPhone() { return this.Phone; }
+     public String getName(){ return this.Name; }
      
-     public Object LogIn(String username,String password,String type) throws FileNotFoundException
+     public User LogIn(String username,String password,String type) throws FileNotFoundException
      {
           if(type.equals("Admin"))
           {

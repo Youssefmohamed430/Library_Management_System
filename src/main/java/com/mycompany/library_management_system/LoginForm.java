@@ -86,6 +86,11 @@ public class LoginForm extends javax.swing.JFrame {
         buttonGroup1.add(Admin);
         Admin.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Admin.setText("Admin");
+        Admin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AdminActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -157,45 +162,66 @@ public class LoginForm extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-           User user = new User();
-           String userName = UserName.getText();
-           String password = Password.getText();
-           String type;
+           User Adminuser = new Admin();
+           User Patronuser= new Patron();
+           User Librarianuser = new Librarian();
+           String userName = this.UserName.getText();
+           String password = this.Password.getText();
+           String type = "";
            if(Admin.isSelected())
-           {  type = Admin.getText();}
+           { 
+                type = Admin.getText();
+                try {
+                    Adminuser = (Admin)Adminuser.LogIn(userName, password, type);
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+           }
            else if(patron.isSelected())
-           {  type = patron.getText();}
+           { 
+               type = patron.getText();
+               try {
+                   Patronuser = (Patron)Patronuser.LogIn(userName, password, type);
+               } catch (FileNotFoundException ex) {
+                   Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
+               }
+           }
            else
-           {  type = Librarian.getText();}
-        try {
-                if(user.LogIn(userName, password, type) != null)
-                {
-                    if(type.equals("Admin"))
-                    {
-                        this.dispose();
-                        new AdminForm((User)user.LogIn(userName, password, type)).setVisible(true);
-                    }
-                    else if(type.equals("patron"))
-                    {
-                        JOptionPane.showMessageDialog(null, "Done!", "Information", JOptionPane.INFORMATION_MESSAGE);
-                    }
-                    else 
-                    {
-                        this.dispose();
-                        new LibrarianForm((User)user.LogIn(userName, password, type)).setVisible(true);
-                    }
-                }
-                else
-                {
-                    JOptionPane.showMessageDialog(this, "Invalid Data !", "Error", JOptionPane.ERROR_MESSAGE);
-                    UserName.setText("");
-                    Password.setText("");
-                }
-        } 
-        catch (FileNotFoundException ex) {
-            Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
+           { 
+               type = Librarian.getText();
+               try {
+                   Librarianuser = (Librarian)Librarianuser.LogIn(userName, password, type);
+               } catch (FileNotFoundException ex) {
+                   Logger.getLogger(LoginForm.class.getName()).log(Level.SEVERE, null, ex);
+               }
+           }
+           
+            if(type.equals("Admin") && ( Adminuser != null ) )
+            {
+                this.dispose();
+                new AdminForm((Admin)Adminuser).setVisible(true);
+            }
+            else if(type.equals("patron") && ( Patronuser != null ) )
+            {
+                this.dispose();
+                new PatronForm((Patron)Patronuser).setVisible(true);
+            }
+            else if(type.equals("Librarian") &&  ( Librarianuser != null ))
+            {
+                this.dispose();
+                new LibrarianForm((Librarian)Librarianuser).setVisible(true);
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(this, "Invalid Data !", "Error", JOptionPane.ERROR_MESSAGE);
+                UserName.setText("");
+                Password.setText("");
+            }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void AdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdminActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AdminActionPerformed
 
     /**
      * @param args the command line arguments
@@ -229,7 +255,6 @@ public class LoginForm extends javax.swing.JFrame {
             new LoginForm().setVisible(true);
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton Admin;
     private javax.swing.JRadioButton Librarian;

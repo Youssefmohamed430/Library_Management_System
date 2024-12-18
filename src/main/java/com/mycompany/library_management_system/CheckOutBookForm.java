@@ -9,7 +9,6 @@ package com.mycompany.library_management_system;
  * @author youss
  */
 public class CheckOutBookForm extends javax.swing.JFrame {
-
     /**
      * Creates new form CheckOutBook
      */
@@ -180,6 +179,13 @@ public class CheckOutBookForm extends javax.swing.JFrame {
             this.YesOption.setVisible(true);
             this.NoOption.setVisible(true);
             librarian1.reservation(this.YesOption.isSelected(), PatornUserNameField.getText(), BookTitleField.getText());
+        }
+        else
+        {
+            String Masseage = "The book has been checked out";
+            Patron patron = (Patron)FileManager.LoadUser(PatornUserNameField.getText(), "E:\\programming\\Java\\Library_Management_System\\Data\\patron.txt");
+            Notification notification = new Notification(Masseage,patron.UserName);
+            Notification.addNotification(notification, patron);
         }
     }//GEN-LAST:event_CheckoutButtonActionPerformed
 

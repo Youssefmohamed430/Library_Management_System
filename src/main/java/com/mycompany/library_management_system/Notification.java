@@ -1,7 +1,6 @@
 package com.mycompany.library_management_system;
 import java.util.ArrayList;
 
-
 public class Notification {
     private String message;
     private String recipient;
@@ -42,7 +41,8 @@ public class Notification {
     public void markAsRead() {
         this.isRead = true;
     }
-    public static void addNotification(Notification notification) {
+    public static void addNotification(Notification notification,Patron patron) {
+        patron.SetNotfication(notification);
         notifications.add(notification);
     }
     
@@ -67,8 +67,6 @@ public class Notification {
     public String toString() {
         return "Notification{" +
                 "message='" + message + '\'' +
-                ", recipient='" + recipient + '\'' +
-                ", isRead=" + isRead +
                 '}';
     }
 }

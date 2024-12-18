@@ -4,6 +4,7 @@
  */
 package com.mycompany.library_management_system;
 
+
 /**
  *
  * @author youss
@@ -14,19 +15,20 @@ public class LibrarianForm extends javax.swing.JFrame {
      * Creates new form LibrarianForm
      */
     
-    private User user;
+    private Librarian librarianuser;
     public LibrarianForm() {
         initComponents();
     }
     
-    public LibrarianForm(User user) {
+    public LibrarianForm(Librarian librarianuser) {
         initComponents();
         this.SaveButton.setVisible(false);
-        this.user = user;
-        this.UserNameField.setText(this.user.UserName);
-        this.PasswordField.setText(this.user.Password);
-        this.PhoneField.setText(this.user.Phone);
-        this.EmailField.setText(this.user.Email);
+        this.librarianuser = librarianuser;
+        this.MainLabel.setText(this.librarianuser.Name + " Librarian");
+        this.UserNameField.setText(this.librarianuser.UserName);
+        this.PasswordField.setText(this.librarianuser.Password);
+        this.PhoneField.setText(this.librarianuser.Phone);
+        this.EmailField.setText(this.librarianuser.Email);
     }
 
     /**
@@ -39,11 +41,12 @@ public class LibrarianForm extends javax.swing.JFrame {
     private void initComponents() {
 
         UserNameField3 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        MainLabel = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         CheckOutButton = new javax.swing.JButton();
         ReturnBook = new javax.swing.JButton();
+        NotifyButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         UserNameField = new javax.swing.JTextField();
         PasswordField = new javax.swing.JTextField();
@@ -59,8 +62,8 @@ public class LibrarianForm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setText("Librarian Account");
+        MainLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        MainLabel.setText("Librarian Account");
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setForeground(new java.awt.Color(153, 153, 153));
@@ -78,6 +81,19 @@ public class LibrarianForm extends javax.swing.JFrame {
 
         ReturnBook.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         ReturnBook.setText("Return Book");
+        ReturnBook.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ReturnBookActionPerformed(evt);
+            }
+        });
+
+        NotifyButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        NotifyButton.setText("Notify Patron");
+        NotifyButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NotifyButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -91,7 +107,8 @@ public class LibrarianForm extends javax.swing.JFrame {
                 .addContainerGap(17, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(CheckOutButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ReturnBook, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(ReturnBook, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(NotifyButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(14, 14, 14))
         );
         jPanel1Layout.setVerticalGroup(
@@ -101,9 +118,11 @@ public class LibrarianForm extends javax.swing.JFrame {
                 .addComponent(jLabel5)
                 .addGap(18, 18, 18)
                 .addComponent(CheckOutButton)
-                .addGap(36, 36, 36)
+                .addGap(26, 26, 26)
                 .addComponent(ReturnBook)
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addGap(28, 28, 28)
+                .addComponent(NotifyButton)
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -156,7 +175,7 @@ public class LibrarianForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(260, 260, 260)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(MainLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(38, 38, 38)
@@ -183,28 +202,27 @@ public class LibrarianForm extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(jLabel1)
-                .addGap(42, 42, 42)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(UserNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(PasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addGap(70, 70, 70)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(PhoneField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(EmailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(Phone))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(MainLabel)
+                        .addGap(42, 42, 42)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(UserNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(PasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addGap(70, 70, 70)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(PhoneField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(EmailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4)
+                            .addComponent(Phone)))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(63, 63, 63)
                 .addComponent(EditButton)
                 .addGap(18, 18, 18)
                 .addComponent(SaveButton)
                 .addContainerGap(167, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -236,6 +254,17 @@ public class LibrarianForm extends javax.swing.JFrame {
         this.setVisible(false);
         new CheckOutBookForm(this).setVisible(true);
     }//GEN-LAST:event_CheckOutButtonActionPerformed
+
+    private void ReturnBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReturnBookActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new ReturnBookForm(this).setVisible(true);
+    }//GEN-LAST:event_ReturnBookActionPerformed
+
+    private void NotifyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NotifyButtonActionPerformed
+        // TODO add your handling code here:
+        this.librarianuser.notifyPatron();
+    }//GEN-LAST:event_NotifyButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -276,6 +305,8 @@ public class LibrarianForm extends javax.swing.JFrame {
     private javax.swing.JButton CheckOutButton;
     private javax.swing.JButton EditButton;
     private javax.swing.JTextField EmailField;
+    private javax.swing.JLabel MainLabel;
+    private javax.swing.JButton NotifyButton;
     private javax.swing.JTextField PasswordField;
     private javax.swing.JLabel Phone;
     private javax.swing.JTextField PhoneField;
@@ -283,7 +314,6 @@ public class LibrarianForm extends javax.swing.JFrame {
     private javax.swing.JButton SaveButton;
     private javax.swing.JTextField UserNameField;
     private javax.swing.JTextField UserNameField3;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

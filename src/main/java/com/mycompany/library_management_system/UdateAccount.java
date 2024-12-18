@@ -21,6 +21,17 @@ public class UdateAccount extends javax.swing.JFrame {
     public UdateAccount(AdminForm adminform) {
         initComponents();
         this.adminform = adminform;
+        this.NewUserNameField.setVisible(false);
+        this.NewPasswordField.setVisible(false);
+        this.PhoneField.setVisible(false);
+        this.EmailField.setVisible(false);
+        this.NameField.setVisible(false);
+        this.UpdateButton.setVisible(false);
+        this.jLabel4.setVisible(false);
+        this.jLabel5.setVisible(false);
+        this.jLabel6.setVisible(false);
+        this.jLabel7.setVisible(false);
+        this.jLabel8.setVisible(false);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -36,11 +47,20 @@ public class UdateAccount extends javax.swing.JFrame {
         BackButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         UserName = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        PassWord = new javax.swing.JTextField();
         PatronRadio = new javax.swing.JRadioButton();
         LibrarianRadio = new javax.swing.JRadioButton();
         ConfirmData = new javax.swing.JButton();
+        NameField = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        NewUserNameField = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        NewPasswordField = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        EmailField = new javax.swing.JTextField();
+        PhoneField = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        UpdateButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Update Account");
@@ -59,9 +79,6 @@ public class UdateAccount extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
         jLabel2.setText("Enter User Name :");
 
-        jLabel3.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
-        jLabel3.setText("Enter Password :");
-
         buttonGroup1.add(PatronRadio);
         PatronRadio.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
         PatronRadio.setText("Patron ");
@@ -78,36 +95,86 @@ public class UdateAccount extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel4.setText("Name");
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel5.setText("User Name");
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel6.setText("Password");
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel7.setText("Email");
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel8.setText("Phone");
+
+        UpdateButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        UpdateButton.setText("Update");
+        UpdateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UpdateButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(jLabel1)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(UserName)
-                            .addComponent(PassWord, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(BackButton, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(156, 156, 156)
+                                .addComponent(jLabel1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(22, 22, 22)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(32, 32, 32)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(NameField, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+                                    .addComponent(NewPasswordField))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(65, 65, 65)
+                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(57, 57, 57)
+                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(PatronRadio, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(LibrarianRadio, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(72, 72, 72))))
+                            .addComponent(EmailField)
+                            .addComponent(NewUserNameField)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(UserName, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(97, 97, 97))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(172, 172, 172)
+                        .addComponent(LibrarianRadio, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 170, Short.MAX_VALUE)
+                        .addComponent(PatronRadio, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(140, 140, 140)))
+                .addContainerGap(83, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(266, 266, 266)
-                .addComponent(ConfirmData, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(309, 309, 309)
+                        .addComponent(ConfirmData, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(241, 241, 241)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(UpdateButton)
+                            .addComponent(PhoneField, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -119,19 +186,39 @@ public class UdateAccount extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(BackButton)
-                        .addGap(78, 78, 78)
+                        .addGap(76, 76, 76)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(UserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(PatronRadio))
-                        .addGap(44, 44, 44)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(PassWord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(LibrarianRadio))))
-                .addGap(42, 42, 42)
+                            .addComponent(UserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(LibrarianRadio)
+                    .addComponent(PatronRadio))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ConfirmData)
-                .addGap(0, 193, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(86, 135, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(NewPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7)
+                            .addComponent(EmailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(33, 33, 33)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(PhoneField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(43, 43, 43))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(75, 75, 75)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(NewUserNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(NameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(UpdateButton)
+                .addGap(20, 20, 20))
         );
 
         pack();
@@ -141,6 +228,35 @@ public class UdateAccount extends javax.swing.JFrame {
     private void ConfirmDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmDataActionPerformed
         // TODO add your handling code here:
         // هبعت الحاجة اللي عملها المستخدم لل method
+        this.NewUserNameField.setVisible(true);
+        this.NewPasswordField.setVisible(true);
+        this.PhoneField.setVisible(true);
+        this.EmailField.setVisible(true);
+        this.NameField.setVisible(true);
+        this.UpdateButton.setVisible(true);
+        this.jLabel4.setVisible(true);
+        this.jLabel5.setVisible(true);
+        this.jLabel6.setVisible(true);
+        this.jLabel7.setVisible(true);
+        this.jLabel8.setVisible(true);
+        if(this.LibrarianRadio.isSelected())
+        {
+           Librarian Librarian = (Librarian)FileManager.LoadUser(this.UserName.getText(), "E:\\programming\\Java\\Library_Management_System\\Data\\Librarian.txt");
+           this.NameField.setText(Librarian.Name);
+           this.NewUserNameField.setText(Librarian.UserName);
+           this.NewPasswordField.setText(Librarian.Password);
+           this.PhoneField.setText(Librarian.Phone);
+           this.EmailField.setText(Librarian.Email);
+        }
+        else if(this.PatronRadio.isSelected())
+        {
+           User Patron = FileManager.LoadUser(this.UserName.getText(), "E:\\programming\\Java\\Library_Management_System\\Data\\patron.txt");
+           this.NameField.setText(Patron.Name);
+           this.NewUserNameField.setText(Patron.UserName);
+           this.NewPasswordField.setText(Patron.Password);
+           this.PhoneField.setText(Patron.Phone);
+           this.EmailField.setText(Patron.Email);
+        }
     }//GEN-LAST:event_ConfirmDataActionPerformed
 
     private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
@@ -148,6 +264,15 @@ public class UdateAccount extends javax.swing.JFrame {
         this.dispose();
         this.adminform.setVisible(true);
     }//GEN-LAST:event_BackButtonActionPerformed
+
+    private void UpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateButtonActionPerformed
+        // TODO add your handling code here:
+            Admin AdminAcc = new Admin();
+           if(this.LibrarianRadio.isSelected())
+                AdminAcc.updateLibrarian(this.UserName.getText(), this.NewUserNameField.getText(), this.NewPasswordField.getText(), this.NameField.getText(), this.EmailField.getText(), this.PhoneField.getText());
+           else
+               AdminAcc.updatePatron(this.UserName.getText(), this.NewUserNameField.getText(), this.NewPasswordField.getText(), this.NameField.getText(), this.EmailField.getText(), this.PhoneField.getText());
+    }//GEN-LAST:event_UpdateButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -177,24 +302,30 @@ public class UdateAccount extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new UdateAccount().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new UdateAccount().setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BackButton;
     private javax.swing.JButton ConfirmData;
+    private javax.swing.JTextField EmailField;
     private javax.swing.JRadioButton LibrarianRadio;
-    private javax.swing.JTextField PassWord;
+    private javax.swing.JTextField NameField;
+    private javax.swing.JTextField NewPasswordField;
+    private javax.swing.JTextField NewUserNameField;
     private javax.swing.JRadioButton PatronRadio;
+    private javax.swing.JTextField PhoneField;
+    private javax.swing.JButton UpdateButton;
     private javax.swing.JTextField UserName;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     // End of variables declaration//GEN-END:variables
 }

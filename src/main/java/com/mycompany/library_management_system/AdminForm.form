@@ -44,7 +44,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      <Component id="jLabel1" min="-2" pref="202" max="-2" attributes="0"/>
+                      <Component id="NameAccount" min="-2" pref="202" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="152" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
@@ -78,7 +78,7 @@
                               <EmptySpace min="-2" pref="222" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="Save" min="-2" pref="100" max="-2" attributes="0"/>
-                                  <Component id="Update" min="-2" pref="100" max="-2" attributes="0"/>
+                                  <Component id="Update" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -93,7 +93,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <Component id="NameAccount" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="usernammelabel" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
@@ -119,7 +119,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="jLabel1">
+    <Component class="javax.swing.JLabel" name="NameAccount">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="24" style="1"/>
@@ -284,6 +284,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Add New  Book"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AddBookActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="UpdateBook">
           <Properties>
@@ -292,6 +295,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Update Book"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="UpdateBookActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="DeleteBook">
           <Properties>
@@ -300,6 +306,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Delete Book"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DeleteBookActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="CategorizeBook">
           <Properties>
@@ -308,6 +317,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Categorize Book"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CategorizeBookActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="TrackStatus">
           <Properties>
@@ -316,6 +328,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Track Status"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TrackStatusActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

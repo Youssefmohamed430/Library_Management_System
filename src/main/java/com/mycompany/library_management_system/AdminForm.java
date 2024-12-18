@@ -9,20 +9,21 @@ package com.mycompany.library_management_system;
  * @author youss
  */
 public class AdminForm extends javax.swing.JFrame {
-    private User user;
+    private Admin AdminAccount;
     /**
      * Creates new form AdminForm
-     * @param user
+     * @param AdminAccount
      */
 
-    public AdminForm(User user) {
+    public AdminForm(Admin AdminAccount) {
         initComponents();
         Save.setVisible(false);
-        this.user = user;
-        usernamefield.setText(this.user.UserName);
-        PasswordField.setText(this.user.Password);
-        PhoneField.setText(this.user.Phone);
-        EmailField.setText(this.user.Email);
+        this.AdminAccount = AdminAccount;
+        this.NameAccount.setText(this.AdminAccount.Name); 
+        this.usernamefield.setText(this.AdminAccount.UserName);
+        this.PasswordField.setText(this.AdminAccount.Password);
+        this.PhoneField.setText(this.AdminAccount.Phone);
+        this.EmailField.setText(this.AdminAccount.Email);
     }
     public AdminForm() {initComponents();}
 
@@ -38,7 +39,7 @@ public class AdminForm extends javax.swing.JFrame {
         menuBar1 = new java.awt.MenuBar();
         menu1 = new java.awt.Menu();
         menu2 = new java.awt.Menu();
-        jLabel1 = new javax.swing.JLabel();
+        NameAccount = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         CreateAccount = new javax.swing.JButton();
@@ -72,8 +73,8 @@ public class AdminForm extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Admin");
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setText("Admin Account");
+        NameAccount.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        NameAccount.setText("Admin Account");
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -122,18 +123,43 @@ public class AdminForm extends javax.swing.JFrame {
 
         AddBook.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         AddBook.setText("Add New  Book");
+        AddBook.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddBookActionPerformed(evt);
+            }
+        });
 
         UpdateBook.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         UpdateBook.setText("Update Book");
+        UpdateBook.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UpdateBookActionPerformed(evt);
+            }
+        });
 
         DeleteBook.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         DeleteBook.setText("Delete Book");
+        DeleteBook.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeleteBookActionPerformed(evt);
+            }
+        });
 
         CategorizeBook.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         CategorizeBook.setText("Categorize Book");
+        CategorizeBook.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CategorizeBookActionPerformed(evt);
+            }
+        });
 
         TrackStatus.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         TrackStatus.setText("Track Status");
+        TrackStatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TrackStatusActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -242,7 +268,7 @@ public class AdminForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(NameAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(152, 152, 152))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -277,7 +303,7 @@ public class AdminForm extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
-                .addComponent(jLabel1)
+                .addComponent(NameAccount)
                 .addGap(53, 53, 53)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(usernammelabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -323,11 +349,7 @@ public class AdminForm extends javax.swing.JFrame {
 
     private void SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveActionPerformed
         // TODO add your handling code here:
-        this.user.UserName = usernamefield.getText();
-        this.user.Password = PasswordField.getText();
-        this.user.Phone = PhoneField.getText();
-        this.user.Email = EmailField.getText();
-        FileManager.saveObject(user, "E:\\programming\\Java\\Library_Management_System\\Data\\Admin.txt");
+        AdminAccount.UpdateInfo(this.usernamefield.getText(), this.PasswordField.getText(), this.EmailField.getText(), this.PhoneField.getText());
         Save.setVisible(false);
         usernamefield.setEditable(false);
         EmailField.setEditable(false);
@@ -352,6 +374,36 @@ public class AdminForm extends javax.swing.JFrame {
         this.setVisible(false);
         new SearchForm(this).setVisible(true);
     }//GEN-LAST:event_SearchAccountActionPerformed
+
+    private void AddBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddBookActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new AddNewBook(this).setVisible(true);
+    }//GEN-LAST:event_AddBookActionPerformed
+
+    private void UpdateBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateBookActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new UpdateBook(this).setVisible(true);
+    }//GEN-LAST:event_UpdateBookActionPerformed
+
+    private void DeleteBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteBookActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new DeleteBook(this).setVisible(true);
+    }//GEN-LAST:event_DeleteBookActionPerformed
+
+    private void CategorizeBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CategorizeBookActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new CategorizeBooks(this).setVisible(true);
+    }//GEN-LAST:event_CategorizeBookActionPerformed
+
+    private void TrackStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TrackStatusActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new TrackStatus(this).setVisible(true);
+    }//GEN-LAST:event_TrackStatusActionPerformed
 
     /**
      * @param args the command line arguments
@@ -381,10 +433,8 @@ public class AdminForm extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AdminForm().setVisible(true);   
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new AdminForm().setVisible(true);
         });
        
     }
@@ -397,6 +447,7 @@ public class AdminForm extends javax.swing.JFrame {
     private javax.swing.JButton DeleteBook;
     private javax.swing.JTextField EmailField;
     private javax.swing.JLabel EmailLabel;
+    private javax.swing.JLabel NameAccount;
     private javax.swing.JTextField PasswordField;
     private javax.swing.JTextField PhoneField;
     private javax.swing.JButton Save;
@@ -405,7 +456,6 @@ public class AdminForm extends javax.swing.JFrame {
     private javax.swing.JButton Update;
     private javax.swing.JButton UpdateAccount;
     private javax.swing.JButton UpdateBook;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

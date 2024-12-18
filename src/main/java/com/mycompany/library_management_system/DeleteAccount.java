@@ -136,7 +136,11 @@ public class DeleteAccount extends javax.swing.JFrame {
 
     private void DeleteAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteAccountActionPerformed
         // TODO add your handling code here:
-        
+        Admin AdminAcc = new Admin();
+        if(this.LibrarianRadio.isSelected())
+            AdminAcc.deleteLibrarian(this.UserName.getText(), this.PassWord.getText());
+        else
+            AdminAcc.deletePatron(this.UserName.getText(), this.PassWord.getText());
     }//GEN-LAST:event_DeleteAccountActionPerformed
 
     private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
