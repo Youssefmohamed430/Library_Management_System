@@ -3,7 +3,7 @@ package com.mycompany.library_management_system;
 import java.util.ArrayList;
 
 public class Search {
-    private SearchQuery currentQuery ;  
+    private SearchQuery currentQuery = new ConcreteSearchQuery(); // Initialize with a concrete implementation
     private final String BOOK_FILE_PATH = "E:\\programming\\Java\\Library_Management_System\\Data\\Books.txt";
     private ArrayList<Book> books = new ArrayList<>(FileManager.loadAllBooks(BOOK_FILE_PATH));
     
@@ -21,23 +21,18 @@ public class Search {
     
     public Book searchBook(String queryType, String queryValue) {
         setCurrentQuery(queryValue, queryType);
-        for(Book book : books){
-            if("title".equalsIgnoreCase(queryType) && book.getTitle().equalsIgnoreCase(queryValue)){
+        for (Book book : books) {
+            if ("title".equalsIgnoreCase(queryType) && book.getTitle().equalsIgnoreCase(queryValue)) {
                 return book;
-            }
-            else if("author".equalsIgnoreCase(queryType) && book.getAuthor().equalsIgnoreCase(queryValue)){
+            } else if ("author".equalsIgnoreCase(queryType) && book.getAuthor().equalsIgnoreCase(queryValue)) {
                 return book;
-            }
-            else if("Id".equalsIgnoreCase(queryType) && book.getId().equalsIgnoreCase(queryValue))
-            {
+            } else if ("Id".equalsIgnoreCase(queryType) && book.getId().equalsIgnoreCase(queryValue)) {
                 return book;
             }
         }
         return null;
     }
-      
 }
-
 
 abstract class SearchQuery {
     String queryType;
@@ -51,3 +46,8 @@ abstract class SearchQuery {
                 '}';
     }
 }
+
+class ConcreteSearchQuery extends SearchQuery {
+    // Concrete implementation for SearchQuery
+}
+    

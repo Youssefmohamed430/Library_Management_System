@@ -18,14 +18,14 @@ public class Book implements Serializable {
 
     
     //constrion class
-    public Book(String book_id,String  book_name,String author,int publicationyear/*,String categroy*/){      
+    public Book(String book_id,String  book_name,String author,int publicationyear,String categoryName){      
        //////////////////////////////////
         this.book_id=book_id;
         this.book_name=book_name;
         this.author=author;
         this.publicationyear=publicationyear;
         this.status=true;
-//        category.setcatagery(categroy);
+        this.category = new Category(categoryName);
     }
     //Getter and Setter 
     public String getId() {
@@ -63,8 +63,8 @@ public class Book implements Serializable {
      *
      * @param category
      */
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setCategory(String category) {
+        this.category.setcatagery(category);
     }
     
     public String getCategory()
@@ -88,11 +88,16 @@ public class Book implements Serializable {
     
     
    //add book (manager_)
-    public static void addbook(Book book) {
-        ArrayList<Book> Books = FileManager.loadAllBooks(BOOK_FILE_PATH);
-        Books.add(book);
-        FileManager.saveAllBooks(Books, BOOK_FILE_PATH);
-    }
+public static void addbook(Book book) {
+    // Load all existing books
+    ArrayList<Book> Books = FileManager.loadAllBooks(BOOK_FILE_PATH);
+    // Add the new book
+    Books.add(book);
+
+    // Save all books back to the file
+    FileManager.saveAllBooks(Books, BOOK_FILE_PATH);
+}
+
     
     public static void categorizeByGenre(String Genre){
         books = new ArrayList<>();
@@ -133,20 +138,23 @@ public class Book implements Serializable {
         }
    }
     ///update book (manager_)
-    public static void updateBookInfo(String id,String Newid, String newTitle, String newAuthor,int newpublicationyear,String newcategroy) {
-       ArrayList<Book> Books = FileManager.loadAllBooks(BOOK_FILE_PATH);
-       for(Book book : Books)
-       {
-           if(book.getId().equals(id)){
-                book.setId(Newid);
-                book.setAuthor(newAuthor);
-                book.setTitle(newTitle);
-                book.setpublicationyear(newpublicationyear);
-                book.category.setcatagery(newcategroy);
-           }
-       }
-       FileManager.saveAllBooks(Books, BOOK_FILE_PATH);
+public static void updateBookInfo(String id, String newId, String newTitle, String newAuthor, int newPublicationYear, String newCategory) {
+    ArrayList<Book> books = FileManager.loadAllBooks(BOOK_FILE_PATH);
+
+    for (Book book : books) {
+        if (book.getId().equals(id)) {
+            book.book_id = newId;
+            book.book_name = newTitle;
+            book.author = newAuthor;
+            book.publicationyear = newPublicationYear;
+            book.setCategory(newCategory);
+        }
     }
+
+    // Save the updated list back to the file
+    FileManager.saveAllBooks(books, BOOK_FILE_PATH);
+}
+
     
     //delete book (manager_)
     public static void deleteBook(String id) {

@@ -5,6 +5,7 @@ public class Patron extends User {
     private ArrayList<CheckedoutHistory> checkOutBooks;
     private ArrayList<Book> Reservations;
     private ArrayList<Notification> notifications;
+    private static final String PATRON_FILE = "E:\\programming\\Java\\Library_Management_System\\Data\\patron.txt";
 
     public Patron(String username, String Password, String name, String Email, String phone) {
         super(username, Password, name, Email, phone);
@@ -16,11 +17,18 @@ public class Patron extends User {
     public Patron(){}
     
     
-    public void updatePatron(String newUserame , String newPassword , String newEmail , String newPhone){
-        this.Email = newEmail;
-        this.Phone = newPhone;
-        this.Password = newPassword;
-        this.UserName = newUserame;
+    public void updatePatron(String username,String newUserName , String newPassword , String newEmail , String newPhone){
+    ArrayList<User> patrons = FileManager.loadAllUsers(PATRON_FILE);
+    for (User patron : patrons) {
+        if (patron.getUserName().equals(username)) {
+            patron.UserName = newUserName;
+            patron.Password = newPassword;
+            patron.Email = newEmail;
+            patron.Phone = newPhone;
+            break;
+        }
+    }
+    FileManager.saveAllUsers(patrons, PATRON_FILE);
     }
     
     public ArrayList<CheckedoutHistory> GetCheckedoutHistory() { return this.checkOutBooks; }  

@@ -12,19 +12,27 @@ public class Admin extends User{
     public Admin(String username, String password, String name, String email, String phone){       
         super(username, password, name, email, phone);
     }
+    
+    public String getUsername(){
+        return this.UserName;
+    }
      
     // manage admin credentials for secure access
     
-    public void UpdateInfo(String newUsername,String newPassword,String NewEmail,String NewPhone)
-    {//--------------------------------Note------------------
-        //Casting ArrayList Admins to Admin
-        ArrayList<User> Admins = FileManager.loadAllUsers("E:\\programming\\Java\\Library_Management_System\\Data\\Admin.txt");
-        this.UserName = newUsername;
-        this.Password = newPassword;
-        this.Email = NewEmail;
-        this.Phone = NewPhone;
-        FileManager.saveAllUsers(Admins, "E:\\programming\\Java\\Library_Management_System\\Data\\Admin.txt");
+public void updateAdmin(String username, String newUserName, String newPassword, String newEmail, String newPhone) {
+    ArrayList<User> admins = FileManager.loadAllUsers("E:\\programming\\Java\\Library_Management_System\\Data\\Admin.txt"); // Load all admins
+    for (User admin : admins) {
+        if (admin.getUserName().equals(username)) { // Find the admin by username
+            admin.UserName = newUserName;
+            admin.Password = newPassword;
+            admin.Email = newEmail;
+            admin.Phone = newPhone;
+            break; // Stop searching after finding the admin
+        }
     }
+    FileManager.saveAllUsers(admins, "E:\\programming\\Java\\Library_Management_System\\Data\\Admin.txt"); // Save the updated admin list
+}
+
     
     // LIBRARIAN MANAGEMENT
     // create a librarian account
@@ -39,20 +47,21 @@ public class Admin extends User{
         FileManager.deleteUser(username, password, LIBRARIAN_FILE);
     }
     // update a librarian account
-    public void updateLibrarian(String username,String NewUserName,String NewPasswword, String newName, String newEmail, String newPhone){
-        ArrayList<User> librarians = FileManager.loadAllUsers(LIBRARIAN_FILE);
-        for (User librarian : librarians) {
-            if(librarian.getUserName().equals(username)){
-                librarian.UserName = NewUserName;
-                librarian.Password = NewPasswword;
-                librarian.Email = newEmail;
-                librarian.Name = newName;
-                librarian.Phone = newPhone;
-                FileManager.saveAllUsers(librarians, LIBRARIAN_FILE);
-                return;
-            }
+public void updateLibrarian(String username, String newUserName, String newPassword, String newName, String newEmail, String newPhone) {
+    ArrayList<User> librarians = FileManager.loadAllUsers(LIBRARIAN_FILE);
+    for (User librarian : librarians) {
+        if (librarian.getUserName().equals(username)) {
+            librarian.UserName = newUserName;
+            librarian.Password = newPassword;
+            librarian.Email = newEmail;
+            librarian.Name = newName;
+            librarian.Phone = newPhone;
+            break;
         }
     }
+    FileManager.saveAllUsers(librarians, LIBRARIAN_FILE);
+}
+
     // search for a librarian account
     public User searchLibrarian(String username){
         ArrayList<User> librarians = FileManager.loadAllUsers(LIBRARIAN_FILE);
@@ -78,20 +87,21 @@ public class Admin extends User{
         FileManager.deleteUser(username, password, PATRON_FILE);
     }
     // update a patron account
-    public void updatePatron(String username,String NewUserName,String NewPasswword, String newName, String newEmail, String newPhone){
-        ArrayList<User> patrons = FileManager.loadAllUsers(PATRON_FILE);
-        for (User patron : patrons) {
-            if(patron.getUserName().equals(username)){
-                patron.UserName = NewUserName;
-                patron.Password = NewPasswword;
-                patron.Email = newEmail;
-                patron.Name = newName;
-                patron.Phone = newPhone;
-                FileManager.saveAllUsers(patrons, PATRON_FILE);
-                return;
-            }
+public void updatePatron(String username, String newUserName, String newPassword, String newName, String newEmail, String newPhone) {
+    ArrayList<User> patrons = FileManager.loadAllUsers(PATRON_FILE);
+    for (User patron : patrons) {
+        if (patron.getUserName().equals(username)) {
+            patron.UserName = newUserName;
+            patron.Password = newPassword;
+            patron.Email = newEmail;
+            patron.Name = newName;
+            patron.Phone = newPhone;
+            break;
         }
     }
+    FileManager.saveAllUsers(patrons, PATRON_FILE);
+}
+
     // Search for a patron account
     public User searchPatron(String username){
         ArrayList<User> patrons = FileManager.loadAllUsers(PATRON_FILE);

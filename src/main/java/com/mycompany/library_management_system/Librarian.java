@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Librarian extends User {
-    private final String LIBRARIAN_FILE_PATH = "E:\\programming\\Java\\Library_Management_System\\Data\\Librarian.txt";
+    private final String LIBRARIAN_FILE = "E:\\programming\\Java\\Library_Management_System\\Data\\Librarian.txt";
     // Constructor
     public Librarian(String username, String password,String Email,String phone,String name) {
         super(username, password,name,Email,phone);// Calls the constructor of the parent class 'User'
@@ -16,14 +16,19 @@ public class Librarian extends User {
     public void setPhone(String phone) {  this.Phone = phone; }
     public void setEmail(String email) { this.Email = email; }
     
-    public void UpdateInfo(String UserName,String Password,String phone ,String Email)
+    public void UpdateInfo(String username,String UserName,String Password,String phone ,String Email)
     {
-        ArrayList<User> Librarians = FileManager.loadAllUsers(LIBRARIAN_FILE_PATH);
-        this.setUsername(UserName);
-        this.setPassword(Password);
-        this.setEmail(Email);
-        this.setPhone(phone);
-        FileManager.saveAllUsers(Librarians, LIBRARIAN_FILE_PATH);
+    ArrayList<User> librarians = FileManager.loadAllUsers(LIBRARIAN_FILE);
+    for (User librarian : librarians) {
+        if (librarian.getUserName().equals(username)) {
+            librarian.UserName = UserName;
+            librarian.Password = Password;
+            librarian.Email = Email;
+            librarian.Phone = phone;
+            break;
+        }
+    }
+    FileManager.saveAllUsers(librarians, LIBRARIAN_FILE);
     }
 
     // Method to check out a book for a patron

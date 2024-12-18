@@ -255,7 +255,7 @@ public class PatronForm extends javax.swing.JFrame {
 
     private void SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveActionPerformed
         // TODO add your handling code here:
-        patron.updatePatron(this.usernamefield.getText(), this.PasswordField.getText(), this.EmailField.getText(), this.PhoneField.getText());
+        patron.updatePatron(this.patron.getUserName(),this.usernamefield.getText(), this.PasswordField.getText(), this.EmailField.getText(), this.PhoneField.getText());
         Save.setVisible(false);
         usernamefield.setEditable(false);
         EmailField.setEditable(false);

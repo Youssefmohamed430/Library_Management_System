@@ -3,6 +3,7 @@ com\mycompany\library_management_system\ReturnBookForm$3.class
 com\mycompany\library_management_system\AdminForm$5.class
 com\mycompany\library_management_system\SearchForm$2.class
 com\mycompany\library_management_system\UdateAccount$1.class
+com\mycompany\library_management_system\AdminForm$13.class
 com\mycompany\library_management_system\UpdateBook$4.class
 com\mycompany\library_management_system\CheckOutBookForm$3.class
 com\mycompany\library_management_system\FileManager.class
@@ -102,6 +103,7 @@ com\mycompany\library_management_system\CategorizeBooks$2.class
 com\mycompany\library_management_system\Notification.class
 com\mycompany\library_management_system\UdateAccount$2.class
 com\mycompany\library_management_system\AppendableObjectOutputStream.class
+com\mycompany\library_management_system\ConcreteSearchQuery.class
 com\mycompany\library_management_system\PatronForm$5.class
 com\mycompany\library_management_system\CheckOutBookForm.class
 com\mycompany\library_management_system\SearchBookForm$2.class

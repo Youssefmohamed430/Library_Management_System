@@ -241,7 +241,7 @@ public class LibrarianForm extends javax.swing.JFrame {
     private void SaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveButtonActionPerformed
         
         Librarian librarian = new Librarian();
-        librarian.UpdateInfo(this.UserNameField.getText(), this.PasswordField.getText(), this.PhoneField.getText(),this.EmailField.getText());
+        librarian.UpdateInfo(this.librarianuser.getUserName(),this.UserNameField.getText(), this.PasswordField.getText(), this.PhoneField.getText(),this.EmailField.getText());
         this.SaveButton.setVisible(false);
         this.UserNameField.setEditable(false);
         this.EmailField.setEditable(false);

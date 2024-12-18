@@ -222,6 +222,11 @@ public class AdminForm extends javax.swing.JFrame {
         usernammelabel.setText("User Name");
 
         usernamefield.setEditable(false);
+        usernamefield.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usernamefieldActionPerformed(evt);
+            }
+        });
 
         EmailLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         EmailLabel.setText("Email");
@@ -349,7 +354,7 @@ public class AdminForm extends javax.swing.JFrame {
 
     private void SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveActionPerformed
         // TODO add your handling code here:
-        AdminAccount.UpdateInfo(this.usernamefield.getText(), this.PasswordField.getText(), this.EmailField.getText(), this.PhoneField.getText());
+        AdminAccount.updateAdmin(this.AdminAccount.getUsername(), this.usernamefield.getText(), this.PasswordField.getText(), this.EmailField.getText(), this.PhoneField.getText());
         Save.setVisible(false);
         usernamefield.setEditable(false);
         EmailField.setEditable(false);
@@ -404,6 +409,10 @@ public class AdminForm extends javax.swing.JFrame {
         this.setVisible(false);
         new TrackStatus(this).setVisible(true);
     }//GEN-LAST:event_TrackStatusActionPerformed
+
+    private void usernamefieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernamefieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usernamefieldActionPerformed
 
     /**
      * @param args the command line arguments

@@ -4,6 +4,8 @@
  */
 package com.mycompany.library_management_system;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author youss
@@ -252,26 +254,57 @@ public class UpdateBook extends javax.swing.JFrame {
 
     private void ConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmActionPerformed
         // TODO add your handling code here:
-        Search s = new Search();
-        String QueryType = this.IdRadio.isSelected() ? this.IdRadio.getText() : (this.TitleRadio.isSelected() ? this.TitleRadio.getText() : this.AuthorRadio.getText() );
-        Book book = s.searchBook(QueryType ,this.SearchField.getText());
-        this.AuthorField.setVisible(true);
-        this.BookIdField.setVisible(true);
-        this.PublicationYearField.setVisible(true);
-        this.UpdateButton.setVisible(true);
-        this.BookTitleField.setVisible(true);
-        this.CategoryBox.setVisible(true);
-        this.jLabel2.setVisible(true);
-        this.jLabel3.setVisible(true);
-        this.jLabel4.setVisible(true);
-        this.jLabel5.setVisible(true);
-        this.jLabel6.setVisible(true);
-        this.AuthorField.setText(book.getAuthor());
-        this.BookIdField.setText(book.getId());
-        this.PublicationYearField.setText(book.getpublicationyear()+"");
-        this.BookTitleField.setText(book.getTitle());
-        this.CategoryBox.setSelectedItem(book.getCategory());
+//        Search s = new Search();
+//        String QueryType = this.IdRadio.isSelected() ? this.IdRadio.getText() : (this.TitleRadio.isSelected() ? this.TitleRadio.getText() : this.AuthorRadio.getText() );
+//        Book book = s.searchBook(QueryType ,this.SearchField.getText());
+//        this.AuthorField.setVisible(true);
+//        this.BookIdField.setVisible(true);
+//        this.PublicationYearField.setVisible(true);
+//        this.UpdateButton.setVisible(true);
+//        this.BookTitleField.setVisible(true);
+//        this.CategoryBox.setVisible(true);
+//        this.jLabel2.setVisible(true);
+//        this.jLabel3.setVisible(true);
+//        this.jLabel4.setVisible(true);
+//        this.jLabel5.setVisible(true);
+//        this.jLabel6.setVisible(true);
+//        this.AuthorField.setText(book.getAuthor());
+//        this.BookIdField.setText(book.getId());
+//        this.PublicationYearField.setText(book.getpublicationyear()+"");
+//        this.BookTitleField.setText(book.getTitle());
+//        this.CategoryBox.setSelectedItem(book.getCategory());
+Search s = new Search();
+    String queryType = this.IdRadio.isSelected() ? this.IdRadio.getText() 
+                      : (this.TitleRadio.isSelected() ? this.TitleRadio.getText() 
+                      : this.AuthorRadio.getText());
+    Book book = s.searchBook(queryType, this.SearchField.getText());
+    
+    if (book == null) {
+        // Handle case when no book is found
+        JOptionPane.showMessageDialog(this, "No book found with the given search criteria.", 
+                                      "Search Result", JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+
+    // Display book details in the form fields
+    this.AuthorField.setVisible(true);
+    this.BookIdField.setVisible(true);
+    this.PublicationYearField.setVisible(true);
+    this.UpdateButton.setVisible(true);
+    this.BookTitleField.setVisible(true);
+    this.CategoryBox.setVisible(true);
+    this.jLabel2.setVisible(true);
+    this.jLabel3.setVisible(true);
+    this.jLabel4.setVisible(true);
+    this.jLabel5.setVisible(true);
+    this.jLabel6.setVisible(true);
+    this.AuthorField.setText(book.getAuthor());
+    this.BookIdField.setText(book.getId());
+    this.PublicationYearField.setText(String.valueOf(book.getpublicationyear()));
+    this.BookTitleField.setText(book.getTitle());
+    this.CategoryBox.setSelectedItem(book.getCategory());
     }//GEN-LAST:event_ConfirmActionPerformed
+
 
     /**
      * @param args the command line arguments

@@ -158,7 +158,7 @@ public class AddNewBook extends javax.swing.JFrame {
     private void AddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddButtonActionPerformed
         // TODO add your handling code here:
         Admin AdminAcc = new Admin();
-        Book book = new Book(this.BookIdField.getText(),this.BookTitleField.getText(),this.AuthorField.getText(),Integer.parseInt(this.PublicationYearField.getText())/*,(String)this.CategoryBox.getSelectedItem()*/);
+        Book book = new Book(this.BookIdField.getText(),this.BookTitleField.getText(),this.AuthorField.getText(),Integer.parseInt(this.PublicationYearField.getText()),(String)this.CategoryBox.getSelectedItem());
         AdminAcc.addBook(book);
     }//GEN-LAST:event_AddButtonActionPerformed
     
