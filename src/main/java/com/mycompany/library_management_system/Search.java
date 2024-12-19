@@ -31,6 +31,12 @@ public class Search {
             else if("author".equalsIgnoreCase(queryType) && book.getAuthor().equalsIgnoreCase(queryValue)){
                 return book;
             }
+            else if("book_id".equalsIgnoreCase(queryType) && book.getId().equalsIgnoreCase(queryValue)){
+                return book;
+            }
+            else{
+                throw new IllegalArgumentException("invalid Query type or value ");
+            }
         } 
         
 //        if not located in memory , we will find through the fileManager
